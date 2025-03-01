@@ -485,11 +485,70 @@ a {
   transition: all 0.3s;
   text-align: center;
   text-decoration: none;
+  border: none;
 }
 
 .comunity__btn:hover {
   background: rgba(0, 0, 0, 0.4);
   padding: 0.8rem 1rem;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.popup__content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.popup__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.popup__box {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 0;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.popup__close {
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: #ff3b30;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.popup__close:hover {
+  background: #d93025;
 }
         
 </style>
@@ -553,19 +612,19 @@ a {
     <div class="market__card">
       <h3 class="market__title">Ranks</h3>
       <p class="market__desc">Dapatkan rank eksklusif dengan fitur spesial dan keistimewaan dalam server.</p>
-      <a href="#" class="market__btn">See list ranks and features</a>
+      <a href="/ranks" class="market__btn">See list ranks and features</a>
     </div>
 
     <div class="market__card">
       <h3 class="market__title">Kits</h3>
       <p class="market__desc">Mulai petualangan dengan kit pilihan untuk membantu progres lebih cepat.</p>
-      <a href="#" class="market__btn">See list of kits and what a kits</a>
+      <a href="/kits" class="market__btn">See list of kits and what a kits</a>
     </div>
 
     <div class="market__card">
       <h3 class="market__title">Battlepass</h3>
       <p class="market__desc">Selesaikan misi, naikkan level, dan dapatkan reward eksklusif tiap musim.</p>
-      <a href="#" class="market__btn">See battlepass and rewards</a>
+      <a href="/battlepass" class="market__btn">See battlepass and rewards</a>
     </div>
   </div>
 </section>
@@ -595,7 +654,7 @@ a {
       <h3 class="comunity__title">Join Discord</h3>
       <p class="comunity__desc">Bergabunglah dengan komunitas Discord kami untuk berdiskusi, mendapatkan update terbaru, dan berbagi pengalaman bermain!</p>
       <div class="comunity__btns">
-        <a href="https://discord.gg/your-server" target="_blank" class="comunity__btn">Join Now</a>
+        <a href="https://discord.gg/j9f8FfUXf6" target="_blank" class="comunity__btn">Join Now</a>
       </div>
     </div>
 
@@ -603,22 +662,45 @@ a {
       <h3 class="comunity__title">Join WhatsApp</h3>
       <p class="comunity__desc">Bergabunglah di grup WhatsApp kami untuk ngobrol lebih santai dengan member lain dan mendapatkan informasi seputar event di server!</p>
       <div class="comunity__btns">
-        <a href="https://wa.me/your-whatsapp" target="_blank" class="comunity__btn">GroupChat</a><a href="https://discord.gg/another-link" target="_blank" class="comunity__btn">Saluran</a>
+        <a href="https://chat.whatsapp.com/GSylylDvgYX1XX57vsrRpZ" target="_blank" class="comunity__btn">GroupChat</a><a href="https://whatsapp.com/channel/0029VakNU1H77qVVXVDmpY2p" target="_blank" class="comunity__btn">Saluran</a>
       </div>
     </div>
 
     <div class="comunity__card">
-      <h3 class="comunity__title">Add play server</h3>
-      <p class="comunity__desc">Ayo bergabunglah bermain bersama ke sever click button berikut untuk menyalin ip adres dan ottomatis menambhkan ke minecraft!</p>
-      <div class="comunity__btns">
-        <a href="https://your-game-link" target="_blank" class="comunity__btn">Java</a>
-        <a href="https://another-game-link" target="_blank" class="comunity__btn">Bedrock</a>
-      </div>
-    </div>
+  <h3 class="comunity__title">Add Play Server</h3>
+  <p class="comunity__desc">
+    Ayo bergabunglah bermain bersama ke server! Klik tombol berikut untuk menyalin IP address dan otomatis menambahkannya ke Minecraft.
+  </p>
+  <div class="comunity__btns">
+    <a href="#" class="comunity__btn" onclick="openPopup()">Java</a>
+<a href="#" class="comunity__btn" onclick="openPopup()">Bedrock</a>
+  </div>
+</div>
   </div>
 </section>
-
+<div class="popup" id="popup">
+  <div class="popup__content">
+    <h3 class="popup__title">Server IP</h3>
+    <p><strong>Bedrock:</strong></p>
+    <div class="popup__box">IP: play.plixsmp.my.id</div>
+    <div class="popup__box">Port: 19132</div>
+    <p><strong>Java:</strong></p>
+    <div class="popup__box">play.plixsmp.my.id</div>
+    <button class="popup__close" onclick="closePopup()">Close</button>
+  </div>
+</div>
     </main>
     <script src="./script.js"></script>
+    <script>
+  function openPopup() {
+  document.getElementById("popup").style.opacity = "1";
+  document.getElementById("popup").style.visibility = "visible";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.opacity = "0";
+  document.getElementById("popup").style.visibility = "hidden";
+}
+</script>
   </body>
 </html>
