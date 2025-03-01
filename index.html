@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== REMIXICONS ===============-->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
     />
 
-    <!--=============== CSS ===============-->
     <style>
-/*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap");
 
-/*=============== BASE STYLES ===============*/
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+::selection {
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
 }
 
 html {
@@ -41,13 +42,11 @@ a {
   text-decoration: none;
 }
 
-/*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1120px;
   margin-inline: 0.5rem;
 }
 
-/*=============== HEADER & NAV ===============*/
 .header {
   position: fixed;
   width: 100%;
@@ -70,6 +69,7 @@ a {
   color: hsl(0, 0%, 100%);
   font-weight: bold;
   z-index: 5;
+  cursor: none;
 }
 
 .nav__close,
@@ -80,7 +80,6 @@ a {
   cursor: hidden;
 }
 
-/* Navigation for mobile devices */
 @media screen and (max-width: 785px) {
   .nav__menu {
     position: fixed;
@@ -128,8 +127,13 @@ a {
   font-weight: 500;
   display: flex;
   align-items: center;
-  transition: opacity 0.4s;
+  transition: all 0.4s;
   justify-content: center;
+  cursor: none;
+}
+
+.nav__link:hover {
+  font-weight: bold;
 }
 
 .nav__close {
@@ -138,19 +142,15 @@ a {
   right: 1.5rem;
 }
 
-/* Show menu */
 .show-menu {
   left: 0;
 }
 
-/* Animation link when displaying menu */
 .show-menu .nav__item {
   visibility: visible;
   transform: translateX(0);
 }
 
-/*=============== BREAKPOINTS ===============*/
-/* For large devices */
 @media screen and (min-width: 785px) {
   .container {
     max-width: auto;
@@ -193,7 +193,7 @@ a {
 }
 
 .section {
-  padding: 4rem 0 2rem;
+  padding: 2rem 0 2rem;
 }
 
 .section__title {
@@ -204,7 +204,19 @@ a {
 }
 
 .section__height {
-  height: 100vh;
+  min-height: 20vh;
+}
+
+#about {
+  min-height: auto;
+}
+
+#market {
+  min-height: auto;
+}
+
+#comunity {
+  min-height: auto;
 }
 
 .active-link {
@@ -228,7 +240,6 @@ a {
   }
 }
 
-/* Hero Section */
         .hero {
             position: relative;
             width: 100%;
@@ -242,12 +253,243 @@ a {
             object-fit: cover;
             z-index: -1;
             border-radius: 10px;
+            margin-top: 10px;
         }
         
 @media screen and (min-width: 785px) {
   .hero__image {
-    margin-top: 35px;
+    margin-top: 30px;
   }
+  .section__height {
+    min-height: 60vh;
+  }
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.about__card {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.about__card::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  box-shadow: 0 8px 0px #000;
+  transform: translateX(-50%);
+  border-radius: 10px;
+}
+
+.about__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.about__title::after {
+  content: "";
+  display: block;
+  width: auto;
+  height: 2px;
+  background-color: white;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.about__desc {
+  font-size: 0.938rem;
+  color: #fff;
+}
+
+.market__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.market__card {
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.market__card:nth-child(1) { background: #FFC107; }
+.market__card:nth-child(2) { background: #FF5722; }
+.market__card:nth-child(3) { background: #2196F3; }
+
+.market__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.market__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  padding: 5px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.market__title::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: glow 1.5s infinite alternate ease-in-out;
+}
+
+.market__title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: glow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes glow {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 1; }
+}
+
+.market__title::before,
+.market__title::after {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+}
+
+.market__title::before {
+  top: 100%;
+  left: 0;
+}
+
+.market__title::after {
+  top: 100%;
+  right: 0;
+}
+
+.market__desc {
+  font-size: 0.938rem;
+  margin-bottom: 1rem;
+}
+
+.market__btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.market__btn:hover {
+  padding: 0.8rem 1rem;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.comunity__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.comunity__card {
+  background: #2ECC71;
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.comunity__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  padding: 5px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.comunity__title::before,
+.comunity__title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+}
+
+.comunity__title::before { left: -10px; }
+.comunity__title::after { right: -10px; }
+
+.comunity__desc {
+  font-size: 0.938rem;
+  margin-bottom: 1rem;
+}
+
+.comunity__btns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.comunity__btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s;
+  text-align: center;
+  text-decoration: none;
+}
+
+.comunity__btn:hover {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.8rem 1rem;
 }
         
 </style>
@@ -255,7 +497,7 @@ a {
     <title>mending turu</title>
   </head>
   <body>
-    <!--==================== HEADER ====================-->
+    
     <header class="header" id="header">
       <nav class="nav container">
         <a href="#" class="nav__logo">PLIXSMP</a>
@@ -269,69 +511,114 @@ a {
             </li>
 
             <li class="nav__item">
+              <a href="#market" class="nav__link">
+                <span>Marketplace</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
               <a href="#about" class="nav__link">
                 <span>About Us</span>
               </a>
             </li>
 
             <li class="nav__item">
-              <a href="#projects" class="nav__link">
-                <span>Projects</span>
-              </a>
-            </li>
-
-            <li class="nav__item">
-              <a href="#studio" class="nav__link">
-                <span>Studio</span>
-              </a>
-            </li>
-
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">
-                <span>Contact</span>
+              <a href="#comunity" class="nav__link">
+                <span>Comunity</span>
               </a>
             </li>
           </ul>
 
-          <!-- Close button -->
           <div class="nav__close" id="nav-close">
             <i class="ri-close-line"></i>
           </div>
         </div>
 
-        <!-- Toggle button -->
         <div class="nav__toggle" id="nav-toggle">
           <i class="ri-menu-line"></i>
         </div>
       </nav>
     </header>
 
-    <!--==================== MAIN ====================-->
     <main>
       <section class="container section section__height" id="home">
         <div class="hero">
             <img src="bnr.png" alt="Hero Banner" class="hero__image">
         </div>
     </section>
+    
+    <section class="container section section__height" id="market">
+  
+  <div class="market__grid">
+    <div class="market__card">
+      <h3 class="market__title">Ranks</h3>
+      <p class="market__desc">Dapatkan rank eksklusif dengan fitur spesial dan keistimewaan dalam server.</p>
+      <a href="#" class="market__btn">See list ranks and features</a>
+    </div>
+
+    <div class="market__card">
+      <h3 class="market__title">Kits</h3>
+      <p class="market__desc">Mulai petualangan dengan kit pilihan untuk membantu progres lebih cepat.</p>
+      <a href="#" class="market__btn">See list of kits and what a kits</a>
+    </div>
+
+    <div class="market__card">
+      <h3 class="market__title">Battlepass</h3>
+      <p class="market__desc">Selesaikan misi, naikkan level, dan dapatkan reward eksklusif tiap musim.</p>
+      <a href="#" class="market__btn">See battlepass and rewards</a>
+    </div>
+  </div>
+</section>
 
       <section class="container section section__height" id="about">
-        <h2 class="section__title">About Us</h2>
-      </section>
+  <div class="about__grid">
+    <div class="about__card">
+      <h3 class="about__title">Server Information</h3>
+      <p class="about__desc">PLIXSMP berdiri sejak 27 Maret 2024. Server ini dikembangkan secara individu oleh owner YGAKS dengan tim builder Kenzo & Pakrifki, serta bantuan oleh admin Vxploit.</p>
+    </div>
 
-      <section class="container section section__height" id="projects">
-        <h2 class="section__title">Projects</h2>
-      </section>
+    <div class="about__card">
+      <h3 class="about__title">Server Rules warn!</h3>
+      <p class="about__desc">Untuk menjaga komunitas tetap nyaman, dilarang griefing, cheating, dan toxic. Patuhi aturan dan nikmati pengalaman bermain yang lebih seru! melanggar ada hukuman hehe.</p>
+    </div>
 
-      <section class="container section section__height" id="studio">
-        <h2 class="section__title">Studio</h2>
-      </section>
+    <div class="about__card">
+      <h3 class="about__title">Server Features</h3>
+      <p class="about__desc">PLIXSMP menghadirkan sistem ekonomi, Fantasy World Generator, serta mekanik MMORPG dengan quest, boss battle, dan survival murni minecraft crossplay java & bedrock.</p>
+    </div>
+  </div>
+</section>
 
-      <section class="container section section__height" id="contact">
-        <h2 class="section__title">Contact</h2>
-      </section>
+<section class="container section section__height" id="comunity">
+  <div class="comunity__grid">
+    <div class="comunity__card">
+      <h3 class="comunity__title">Join Discord</h3>
+      <p class="comunity__desc">Bergabunglah dengan komunitas Discord kami untuk berdiskusi, mendapatkan update terbaru, dan berbagi pengalaman bermain!</p>
+      <div class="comunity__btns">
+        <a href="https://discord.gg/your-server" target="_blank" class="comunity__btn">Join Now</a>
+      </div>
+    </div>
+
+    <div class="comunity__card">
+      <h3 class="comunity__title">Join WhatsApp</h3>
+      <p class="comunity__desc">Bergabunglah di grup WhatsApp kami untuk ngobrol lebih santai dengan member lain dan mendapatkan informasi seputar event di server!</p>
+      <div class="comunity__btns">
+        <a href="https://wa.me/your-whatsapp" target="_blank" class="comunity__btn">GroupChat</a><a href="https://discord.gg/another-link" target="_blank" class="comunity__btn">Saluran</a>
+      </div>
+    </div>
+
+    <div class="comunity__card">
+      <h3 class="comunity__title">Add play server</h3>
+      <p class="comunity__desc">Ayo bergabunglah bermain bersama ke sever click button berikut untuk menyalin ip adres dan ottomatis menambhkan ke minecraft!</p>
+      <div class="comunity__btns">
+        <a href="https://your-game-link" target="_blank" class="comunity__btn">Java</a>
+        <a href="https://another-game-link" target="_blank" class="comunity__btn">Bedrock</a>
+      </div>
+    </div>
+  </div>
+</section>
+
     </main>
-
-    <!--=============== MAIN JS ===============-->
     <script src="./script.js"></script>
   </body>
 </html>
