@@ -1,706 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.min.css"
-    />
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: #181a22;
+      padding-top: 50px;
+      user-select: none;
+    }
 
-    <style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap");
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      font-size: 20px;
+      color: #fff;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+    .navbar.transparent {
+      background: transparent;
+      box-shadow: none;
+    }
 
-::selection {
-    background: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-}
+    .navbar.scrolled {
+      background: rgba(59, 63, 81, 0.95);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    .navbar-left {
+      display: flex;
+    }
 
-body {
-  font-family: "Montserrat Alternates", sans-serif;
-  margin: 0;
-  font-size: 0.938rem;
-  background-color: hsl(0, 0%, 100%);
-}
+    .navbar-title {
+      font-weight: bold;
+      margin-left: 5px;
+    }
 
-ul {
-  list-style: none;
-}
+    .menu-toggle {
+      display: none;
+      font-size: 25px;
+      color: #fff;
+      background: none;
+      border: none;
+    }
 
-a {
-  text-decoration: none;
-}
+    .menu-toggle:focus {
+      outline: none;
+      box-shadow: none;
+    }
 
-.container {
-  max-width: 1120px;
-  margin-inline: 0.5rem;
-}
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
 
-.header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(52, 52, 52, 0.99);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-}
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      width: 100%;
+      cursor: none;
+      transition: color 0.3s ease;
+    }
 
-.nav {
-  position: relative;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    @media (max-width: 768px) {
+      .menu-desktop {
+        display: none;
+      }
 
-.nav__logo {
-  color: hsl(0, 0%, 100%);
-  font-weight: bold;
-  z-index: 5;
-  cursor: none;
-}
+      .menu-toggle {
+        display: block;
+      }
 
-.nav__close,
-.nav__toggle {
-  display: flex;
-  color: hsl(0, 0%, 100%);
-  font-size: 1.5rem;
-  cursor: hidden;
-}
+      .menu a {
+        padding: 5px 0;
+        color: #ccc;
+        font-size: 14px;
+        border-bottom: 1px #555 solid;
+      }
 
-@media screen and (max-width: 785px) {
-  .nav__menu {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    background: rgba(52, 52, 52, 0.98);
-    width: 100%;
-    height: 100%;
-    padding: 6rem 3.5rem 4.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: left 0.4s;
+      .menu-mobile {
+        display: flex;
+        position: fixed;
+        bottom: -100%;
+        left: 10px;
+        right: 10px;
+        background: #3b3f51;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 20px 5px 30px;
+        border-radius: 20px 20px 0 0;
+        pointer-events: none;
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.3s ease;
+        transform: translateY(100%);
+        z-index: 999;
+      }
+
+      .menu-mobile.open {
+        transform: translateY(0);
+        bottom: 0;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .menu-handle {
+        width: 40px;
+        height: 5px;
+        background: #ccc;
+        border-radius: 3px;
+        margin-bottom: 10px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .menu-mobile {
+        display: none;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 20px 20px;
+      color: #fff;
+    }
+
+    .hero-title {
+      font-size: 35px;
+      line-height: 1.3;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero-title-yellow {
+      color: #ffc107;
+      font-weight: 600;
+    }
+
+    .hero-title-white {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 14px;
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .hero-btn {
+      text-decoration: none;
+      padding: 15px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero-btn.discord {
+      background-color: #5865F2;
+      color: #fff;
+    }
+
+    .hero-btn.support {
+      background-color: #ffc107;
+      color: #333;
+    }
+
+    .hero-btn:hover {
+      opacity: 0.85;
+    }
+
+    .sec-title {
+      font-size: 30px;
+      line-height: 1;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .sec-title-yellow {
+      color: #ffc107;
+      font-weight: 600;
+    }
+
+    .sec-title-white-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sec-title-white-line::before,
+    .sec-title-white-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #fff;
+    }
+
+    .sec-title-white {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .sec-description {
+      font-size: 14px;
+      max-width: 1000px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .title-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .title-line::before,
+    .title-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #ccc;
+    }
+
+    .title-line-text {
+      padding: 0 10px;
+      color: #fff;
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .product-section {
+      padding: 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .product-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+    }
+
+    .card-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #ffc107;
+      border-radius: 10px 0 0 0;
+      width: 50px;
+      height: 50px;
+      border-bottom-right-radius: 100%;
+      display: flex;
+      padding: 10px;
+      color: #2a2d38;
+      font-size: 18px;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .product-card {
+      position: relative;
+      border-radius: 10px;
+      background-color: #2a2d38;
+      padding: 10px;
+      color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: #2a2d38;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      position: relative;
+      padding-right: 15px;
+      font-size: 15px;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.3;
+    }
+
+    .faq-toggle-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.3;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .faq-item.open .faq-toggle-icon {
+      transform: rotate(180deg);
+    }
+    
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .nav__item {
-    transform: translateX(-150px);
-    visibility: hidden;
-    transition: transform 0.4s ease-out, visibility 0.4s;
-  }
-
-  .nav__item:nth-child(1) { transition-delay: 0.1s; }
-  .nav__item:nth-child(2) { transition-delay: 0.2s; }
-  .nav__item:nth-child(3) { transition-delay: 0.3s; }
-  .nav__item:nth-child(4) { transition-delay: 0.4s; }
-  .nav__item:nth-child(5) { transition-delay: 0.5s; }
-}
-
-@media screen and (max-width: 350px) {
-  .nav {
-    margin: 0 10px 0 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.nav__list {
-  display: flex;
-  flex-direction: column;
-  row-gap: 1rem;
+.animate-slide {
+  animation: slideUpFade 0.6s ease;
 }
 
-.nav__link {
-  position: relative;
-  color: rgb(191, 191, 191);
-  font-size: 1.5rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  transition: all 0.4s;
-  justify-content: center;
-  cursor: none;
-}
-
-.nav__link:hover {
-  font-weight: bold;
-}
-
-.nav__close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-}
-
-.show-menu {
-  left: 0;
-}
-
-.show-menu .nav__item {
-  visibility: visible;
-  transform: translateX(0);
-}
-
-@media screen and (min-width: 785px) {
-  .container {
-    max-width: auto;
-    margin-inline: auto;
-  }
-
-  .nav {
-    height: calc(2.5rem + 2rem);
-  }
-
-  .nav__toggle,
-  .nav__close {
-    display: none;
-  }
-
-  .nav__link {
-    font-size: 0.938rem;
-  }
-
-  .nav__link i {
-    font-size: 1.5rem;
-  }
-
-  .nav__list {
-    flex-direction: row;
-    column-gap: 3rem;
-  }
-
-  .nav__menu {
-    display: flex;
-    align-items: center;
-    column-gap: 3.5rem;
-  }
-}
-
-@media screen and (max-width: 1150px) {
-  .nav {
-    margin: 0 20px 0 20px;
-  }
-}
-
-.section {
-  padding: 2rem 0 2rem;
-}
-
-.section__title {
-  font-size: 1.5rem;
-  color: hsl(0, 0%, 0%);
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.section__height {
-  min-height: 20vh;
-}
-
-#about {
-  min-height: auto;
-}
-
-#market {
-  min-height: auto;
-}
-
-#comunity {
-  min-height: auto;
-}
-
-.active-link {
-  color: white;
-}
-
-.active-link::before {
-  content: "";
-  position: absolute;
-  bottom: -0.5rem;
-  width: 35px;
-  height: 2px;
-  background-color: white;
-  border-radius: 3px;
-  transition: width 0.4s ease-out;
-}
-
-@media screen and (max-width: 800px) {
-  .nav__link {
-    font-size: 1rem;
-  }
-}
-
-        .hero {
-            position: relative;
-            width: 100%;
-            display: flex;
-        }
-
-        .hero__image {
-            position: absolute;
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            z-index: -1;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-        
-@media screen and (min-width: 785px) {
-  .hero__image {
-    margin-top: 30px;
-  }
-  .section__height {
-    min-height: 60vh;
-  }
-}
-
-.about__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
-}
-
-.about__card {
-  position: relative;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.about__card::before {
-  content: "";
-  position: absolute;
-  top: 10px;
-  left: 15px;
-  width: 10px;
-  height: 10px;
-  background: #fff;
-  box-shadow: 0 8px 0px #000;
-  transform: translateX(-50%);
-  border-radius: 10px;
-}
-
-.about__title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  position: relative;
-  display: inline-block;
-}
-
-.about__title::after {
-  content: "";
-  display: block;
-  width: auto;
-  height: 2px;
-  background-color: white;
-  margin-top: 5px;
-  border-radius: 2px;
-}
-
-.about__desc {
-  font-size: 0.938rem;
-  color: #fff;
-}
-
-.market__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
-}
-
-.market__card {
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.market__card:nth-child(1) { background: #FFC107; }
-.market__card:nth-child(2) { background: #FF5722; }
-.market__card:nth-child(3) { background: #2196F3; }
-
-.market__card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.market__title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  padding: 5px;
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-.market__title::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -10px;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  animation: glow 1.5s infinite alternate ease-in-out;
-}
-
-.market__title::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -10px;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  animation: glow 1.5s infinite alternate ease-in-out;
-}
-
-@keyframes glow {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(1.5); opacity: 1; }
-}
-
-.market__title::before,
-.market__title::after {
-  width: 50px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-}
-
-.market__title::before {
-  top: 100%;
-  left: 0;
-}
-
-.market__title::after {
-  top: 100%;
-  right: 0;
-}
-
-.market__desc {
-  font-size: 0.938rem;
-  margin-bottom: 1rem;
-}
-
-.market__btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: all 0.3s;
-}
-
-.market__btn:hover {
-  padding: 0.8rem 1rem;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.comunity__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 3rem;
-}
-
-.comunity__card {
-  background: #2ECC71;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.comunity__title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  padding: 5px;
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-.comunity__title::before,
-.comunity__title::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 50px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-}
-
-.comunity__title::before { left: -10px; }
-.comunity__title::after { right: -10px; }
-
-.comunity__desc {
-  font-size: 0.938rem;
-  margin-bottom: 1rem;
-}
-
-.comunity__btns {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.comunity__btn {
-  flex: 1;
-  min-width: 120px;
-  padding: 0.5rem 1rem;
-  background: rgba(0, 0, 0, 0.2);
-  color: white;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: all 0.3s;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-}
-
-.comunity__btn:hover {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 0.8rem 1rem;
-}
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.fade-out-up {
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.popup__content {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 15px;
-  width: 300px;
+/* PERKECIL JARAK SECTION */
+.benefit-section, .rating-section {
+  padding: 20px 10px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.benefit-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.benefit-card {
+  background-color: #1f2230;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: calc(50% - 8px);
+  box-sizing: border-box;
+}
+
+.benefit-icon {
+  font-size: 26px;
+  color: #fff;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.benefit-divider {
+  width: 1px;
+  height: 80px;
+  background-color: #ddd;
+  margin: 0 16px;
+}
+
+.benefit-content h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.benefit-content p {
+  font-size: 14px;
+  color: #ccc;
+}
+
+@media (max-width: 767px) {
+  .benefit-card {
+    width: 100%;
+  }
+}
+
+.rating-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+}
+
+.rating-card {
+  min-width: 300px;
+  max-width: 300px;
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  background: #2a2d38;
+  padding: 18px;
+  color: #fff;
+  text-align: left;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.site-footer {
+  background-color: #1f2230;
+  color: #ccc;
+  padding: 40px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
   text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.popup__title {
-  font-size: 1.2rem;
+.footer-logo {
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-.popup__box {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 8px;
-  border-radius: 8px;
-  margin: 5px 0;
-  font-weight: bold;
-  font-family: monospace;
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
-.popup__close {
-  margin-top: 15px;
-  padding: 8px 20px;
-  background: #ff3b30;
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  border: none;
-  outline: none;
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: none;
+  transition: color 0.3s ease;
 }
 
-.popup__close:hover {
-  background: #d93025;
+.footer-socials {
+  margin-bottom: 15px;
 }
-        
-</style>
 
-    <title>plixsmp - fantasy</title>
-  </head>
-  <body>
-    
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo">PLIXSMP</a>
+.footer-socials a {
+  margin: 0 10px;
+  color: #ccc;
+  font-size: 18px;
+  cursor: none;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">
-                <span>Home</span>
-              </a>
-            </li>
+.footer-bottom {
+  font-size: 13px;
+  color: #777;
+  margin-top: 10px;
+}
+  </style>
+</head>
+<body>
 
-            <li class="nav__item">
-              <a href="#market" class="nav__link">
-                <span>Marketplace</span>
-              </a>
-            </li>
-
-            <li class="nav__item">
-              <a href="#about" class="nav__link">
-                <span>About Us</span>
-              </a>
-            </li>
-
-            <li class="nav__item">
-              <a href="#comunity" class="nav__link">
-                <span>Comunity</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="nav__close" id="nav-close">
-            <i class="ri-close-line"></i>
-          </div>
-        </div>
-
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="ri-menu-line"></i>
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <section class="container section section__height" id="home">
-        <div class="hero">
-            <img src="bnr.png" alt="Hero Banner" class="hero__image">
-        </div>
-    </section>
-    
-    <section class="container section section__height" id="market">
-  
-  <div class="market__grid">
-    <div class="market__card">
-      <h3 class="market__title">Ranks</h3>
-      <p class="market__desc">Dapatkan rank eksklusif dengan fitur spesial dan keistimewaan dalam server.</p>
-      <a href="/ranks" class="market__btn">See list ranks and features</a>
+  <div class="navbar transparent">
+    <div class="navbar-left">
+      <span class="navbar-title">PliXGO.MY.iD</span>
     </div>
-
-    <div class="market__card">
-      <h3 class="market__title">Kits</h3>
-      <p class="market__desc">Mulai petualangan dengan kit pilihan untuk membantu progres lebih cepat.</p>
-      <a href="/kits" class="market__btn">See list of kits and what a kits</a>
-    </div>
-
-    <div class="market__card">
-      <h3 class="market__title">Battlepass</h3>
-      <p class="market__desc">Selesaikan misi, naikkan level, dan dapatkan reward eksklusif tiap musim.</p>
-      <a href="/battlepass" class="market__btn">See battlepass and rewards</a>
+    <div class="navbar-right">
+      <div class="menu menu-desktop">
+        <a href="#">Informasi</a>
+        <a href="#">Produk</a>
+        <a href="#">Komunitas</a>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">
+        <i id="menuIcon" class="fas fa-circle-info"></i>
+      </button>
     </div>
   </div>
-</section>
 
-      <section class="container section section__height" id="about">
-  <div class="about__grid">
-    <div class="about__card">
-      <h3 class="about__title">Server Information</h3>
-      <p class="about__desc">PLIXSMP berdiri sejak 27 Maret 2024. Server ini dikembangkan secara individu oleh owner YGAKS dengan tim builder Kenzo & Pakrifki, serta bantuan oleh admin Vxploit.</p>
-    </div>
-
-    <div class="about__card">
-      <h3 class="about__title">Server Rules warn!</h3>
-      <p class="about__desc">Untuk menjaga komunitas tetap nyaman, dilarang griefing, cheating, dan toxic. Patuhi aturan dan nikmati pengalaman bermain yang lebih seru! melanggar ada hukuman hehe.</p>
-    </div>
-
-    <div class="about__card">
-      <h3 class="about__title">Server Features</h3>
-      <p class="about__desc">PLIXSMP menghadirkan sistem ekonomi, Fantasy World Generator, serta mekanik MMORPG dengan quest, boss battle, dan survival murni minecraft crossplay java & bedrock.</p>
-    </div>
+  <div class="menu menu-mobile" id="navbarMenu">
+    <div class="menu-handle" id="menuHandle"></div>
+    <a href="#">informasi: about and info of plixstore</a>
+    <a href="#">produk: list product and service</a>
+    <a href="#">komunitas: comunity dc of plixstore</a>
   </div>
-</section>
 
-<section class="container section section__height" id="comunity">
-  <div class="comunity__grid">
-    <div class="comunity__card">
-      <h3 class="comunity__title">Join Discord</h3>
-      <p class="comunity__desc">Bergabunglah dengan komunitas Discord kami untuk berdiskusi, mendapatkan update terbaru, dan berbagi pengalaman bermain!</p>
-      <div class="comunity__btns">
-        <a href="https://discord.gg/j9f8FfUXf6" target="_blank" class="comunity__btn">Join Now</a>
-      </div>
-    </div>
-
-    <div class="comunity__card">
-      <h3 class="comunity__title">Join WhatsApp</h3>
-      <p class="comunity__desc">Bergabunglah di grup WhatsApp kami untuk ngobrol lebih santai dengan member lain dan mendapatkan informasi seputar event di server!</p>
-      <div class="comunity__btns">
-        <a href="https://chat.whatsapp.com/GSylylDvgYX1XX57vsrRpZ" target="_blank" class="comunity__btn">GroupChat</a><a href="https://whatsapp.com/channel/0029VakNU1H77qVVXVDmpY2p" target="_blank" class="comunity__btn">Saluran</a>
-      </div>
-    </div>
-
-    <div class="comunity__card">
-  <h3 class="comunity__title">Add Play Server</h3>
-  <p class="comunity__desc">
-    Ayo bergabunglah bermain bersama ke server! Klik tombol berikut untuk menyalin IP address dan otomatis menambahkannya ke Minecraft.
+  <div class="hero">
+  <h1 class="hero-title">
+    <span class="hero-title-yellow" id="dynamic-yellow">Roleplay Dan Petualangan</span><br>
+    <span class="hero-title-white" id="dynamic-white">HOSTING</span>
+  </h1>
+  <p class="hero-description" id="dynamic-desc">
+    PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!
   </p>
-  <div class="comunity__btns">
-    <a href="#" class="comunity__btn" onclick="openPopup()">Java</a>
-<a href="#" class="comunity__btn" onclick="openPopup()">Bedrock</a>
+  <div class="hero-buttons">
+    <a href="#" class="hero-btn discord">Gabung Discord</a>
+    <a href="#" class="hero-btn support">Customer Support</a>
   </div>
 </div>
+
+  <div class="product-section" id="layanan">
+    <h1 class="sec-title">
+      <span class="sec-title-yellow">Buat Dunia mu</span><br>
+      <div class="sec-title-white-line">
+        <span class="sec-title-white">Daftar Layanan Kami</span>
+      </div>
+    </h1>
+    <div class="product-container">
+      <div class="product-card">
+        <div class="card-icon"><i class="fas fa-database"></i></div>
+        <h3>HOSTING</h3>
+        <p>Layanan hosting untuk Minecraft, SAMP, website, dan bot Discord dengan performa tinggi.</p>
+      </div>
+      <div class="product-card">
+        <div class="card-icon"><i class="fas fa-tree"></i></div>
+        <h3>BUILDER</h3>
+        <p>Tim builder profesional siap membuat map Minecraft custom sesuai keinginan kamu.</p>
+      </div>
+      <div class="product-card">
+        <div class="card-icon"><i class="fas fa-palette"></i></div>
+        <h3>DESIGN</h3>
+        <p>Jasa desain logo, banner, UI Discord, dan lainnya untuk kebutuhan komunitasmu.</p>
+      </div>
+      <div class="product-card">
+        <div class="card-icon"><i class="fas fa-gear"></i></div>
+        <h3>SETUPS</h3>
+        <p>Setup server dan bot siap pakai, lengkap dengan plugin atau fitur custom.</p>
+      </div>
+    </div>
+  </div>
+
+ <div class="faq-container" id="bantuan">
+    <h1 class="sec-title">
+      <span class="sec-title-yellow">Butuh Bantuan</span><br>
+      <div class="sec-title-white-line">
+        <span class="sec-title-white">Kami Siap membantu</span>
+      </div>
+    </h1>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="faq-text">Apakah PlixGO menyediakan server Minecraft?</span>
+        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+      </div>
+      <div class="faq-answer">
+        Ya! PlixGO menyediakan layanan hosting Minecraft dengan performa tinggi dan fitur lengkap.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="faq-text">Apakah bisa hosting bot Discord?</span>
+        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+      </div>
+      <div class="faq-answer">
+        Tentu, kami menyediakan paket khusus untuk bot Discord agar tetap online 24/7 dengan resource optimal.
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="faq-text">Apakah ada support untuk SAMP server?</span>
+        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+      </div>
+      <div class="faq-answer">
+        PlixGO mendukung hosting SAMP server dengan setup mudah dan bantuan teknis jika dibutuhkan.
+      </div>
+    </div>
+  </div>
+  
+  <!-- BENEFIT SECTION -->
+<section class="benefit-section" id="unggulan">
+  <h1 class="sec-title">
+    <span class="sec-title-yellow">Keunggulan Kami?</span><br>
+    <div class="sec-title-white-line">
+      <span class="sec-title-white">Bnefit kami tawarkan</span>
+    </div>
+  </h1>
+  <div class="benefit-container">
+
+    <!-- Card 1 -->
+    <div class="benefit-card">
+      <i class="fas fa-shield-alt benefit-icon"></i>
+      <div class="benefit-divider"></div>
+      <div class="benefit-content">
+        <h3>Proteksi DDoS</h3>
+        <p>Keamanan maksimal dari serangan berbahaya dengan sistem anti-DDoS canggih.</p>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="benefit-card">
+      <i class="fas fa-tachometer-alt benefit-icon"></i>
+      <div class="benefit-divider"></div>
+      <div class="benefit-content">
+        <h3>Performa Cepat</h3>
+        <p>Server berperforma tinggi dengan uptime 99.9% dan kecepatan maksimal.</p>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="benefit-card">
+      <i class="fas fa-headset benefit-icon"></i>
+      <div class="benefit-divider"></div>
+      <div class="benefit-content">
+        <h3>Dukungan 24/7</h3>
+        <p>Tim support kami siap membantu kapanpun, 24 jam sehari, 7 hari seminggu.</p>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="benefit-card">
+      <i class="fas fa-lock benefit-icon"></i>
+      <div class="benefit-divider"></div>
+      <div class="benefit-content">
+        <h3>Privasi Terjamin</h3>
+        <p>Data pengguna dienkripsi dan aman dengan standar industri terbaik.</p>
+      </div>
+    </div>
+
   </div>
 </section>
-<div class="popup" id="popup">
-  <div class="popup__content">
-    <h3 class="popup__title">Server IP</h3>
-    <p><strong>Bedrock:</strong></p>
-    <div class="popup__box">IP: play.plixsmp.my.id</div>
-    <div class="popup__box">Port: 19132</div>
-    <p><strong>Java:</strong></p>
-    <div class="popup__box">play.plixsmp.my.id</div>
-    <button class="popup__close" onclick="closePopup()">Close</button>
+
+<!-- RATING SECTION -->
+<div class="rating-section">
+  <h1 class="sec-title">
+    <span class="sec-title-yellow">Apa Kata Mereka?</span><br>
+    <div class="sec-title-white-line">
+      <span class="sec-title-white">Ulasan Pengguna</span>
+    </div>
+  </h1>
+  <div class="rating-container">
+    <div class="rating-card">
+      <div class="rating-stars">★★★★★</div>
+      <p class="rating-text">“Hosting-nya sangat cepat dan handal, sangat cocok untuk game online!”</p>
+      <div class="rating-user">- Arif | Owner Game Server</div>
+    </div>
+    <div class="rating-card">
+      <div class="rating-stars">★★★★☆</div>
+      <p class="rating-text">“Mudah digunakan, namun bisa lebih baik dengan opsi kustomisasi lebih banyak.”</p>
+      <div class="rating-user">- Siti | Developer Game</div>
+    </div>
+    <div class="rating-card">
+      <div class="rating-stars">★★★★★</div>
+      <p class="rating-text">“Sangat puas dengan pelayanan dan server yang sangat stabil!”</p>
+      <div class="rating-user">- John | Administrator Server</div>
+    </div>
+    <div class="rating-card">
+      <div class="rating-stars">★★★★☆</div>
+      <p class="rating-text">“Support tim sangat responsif dan memberikan solusi tepat waktu.”</p>
+      <div class="rating-user">- Alex | Web Developer</div>
+    </div>
+    <div class="rating-card">
+      <div class="rating-stars">★★★★★</div>
+      <p class="rating-text">“Pelayanan yang sangat baik, server berjalan lancar tanpa masalah.”</p>
+      <div class="rating-user">- Maria | Admin Komunitas</div>
+    </div>
   </div>
 </div>
-    </main>
-    <script src="./script.js"></script>
-    <script>
-  function openPopup() {
-  document.getElementById("popup").style.opacity = "1";
-  document.getElementById("popup").style.visibility = "visible";
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-logo">PliXGO.MY.iD</div>
+
+    <div class="footer-links">
+      <a href="#layanan">Layanan</a>
+      <a href="#bantuan">Bantuan</a>
+      <a href="#unggulan">Keunggulan</a>
+    </div>
+
+    <div class="footer-socials">
+  <a href="https://discord.com/invite/yourserver" target="_blank" title="Join Discord">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="mailto:your@email.com" title="Kirim Email">
+    <i class="fas fa-envelope"></i>
+  </a>
+  <a href="plixgo.my.id" title="website">
+    <i class="fas fa-globe"></i>
+  </a>
+</div>
+
+    <div class="footer-bottom">
+      &copy; 2025 PliXGO. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navbarMenu");
+      const icon = document.getElementById("menuIcon");
+      menu.classList.toggle("open");
+      icon.classList.toggle("fa-circle-info");
+      icon.classList.toggle("fa-circle-xmark");
+    }
+
+    document.getElementById("menuHandle").addEventListener("click", () => {
+      const menu = document.getElementById("navbarMenu");
+      const icon = document.getElementById("menuIcon");
+      menu.classList.remove("open");
+      icon.classList.remove("fa-circle-xmark");
+      icon.classList.add("fa-circle-info");
+    });
+
+    function toggleFAQ(element) {
+      const item = element.closest(".faq-item");
+      item.classList.toggle("open");
+    }
+
+    window.addEventListener("scroll", () => {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY === 0) {
+        navbar.classList.add("transparent");
+        navbar.classList.remove("scrolled");
+      } else {
+        navbar.classList.add("scrolled");
+        navbar.classList.remove("transparent");
+      }
+    });
+
+    window.addEventListener("load", () => {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY === 0) {
+        navbar.classList.add("transparent");
+        navbar.classList.remove("scrolled");
+      } else {
+        navbar.classList.add("scrolled");
+        navbar.classList.remove("transparent");
+      }
+    });
+  </script>
+  <script>
+let y=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],
+    w=["HOSTING","BUILDER","DESIGN","SETUPS"],
+    d=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!",
+       "Layanan pembangunan map Minecraft yang dirancang khusus untukmu.",
+       "Desain logo dan banner yang bikin komunitasmu tampil beda.",
+       "Setup bot & server siap pakai, lengkap dengan fitur terbaik."],
+    i=0;
+
+function r(){
+  let e=document.getElementById("dynamic-yellow"),
+      t=document.getElementById("dynamic-white"),
+      n=document.getElementById("dynamic-desc");
+  
+  [e,t,n].forEach(o=>o.classList.add("fade-out-up"));
+  
+  setTimeout(()=>{
+    e.textContent=y[i];
+    t.textContent=w[i];
+    n.textContent=d[i];
+    [e,t,n].forEach(o=>{
+      o.classList.remove("fade-out-up");
+      o.classList.add("animate-slide");
+      setTimeout(()=>o.classList.remove("animate-slide"),300);
+    });
+    i=(i+1)%y.length;
+  },300);
 }
 
-function closePopup() {
-  document.getElementById("popup").style.opacity = "0";
-  document.getElementById("popup").style.visibility = "hidden";
-}
+setInterval(r,3500);
+r();
 </script>
-  </body>
+</body>
 </html>
