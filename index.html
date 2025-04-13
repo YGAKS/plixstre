@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>PLIXGO.MY.ID</title>
+<meta name="description" content="PlixGO - Layanan hosting Minecraft, SAMP, Discord, dan desain digital terbaik di Indonesia.">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
   <style>
     * {
@@ -95,9 +97,9 @@
 
       .menu a {
         padding: 5px 0;
-        color: #ccc;
+        color: #333;
         font-size: 14px;
-        border-bottom: 1px #555 solid;
+        border-bottom: 1px #bbb solid;
       }
 
       .menu-mobile {
@@ -106,11 +108,11 @@
         bottom: -100%;
         left: 10px;
         right: 10px;
-        background: #3b3f51;
+        background: #ddd;
         flex-direction: column;
         align-items: center;
         gap: 0;
-        padding: 20px 5px 30px;
+        padding: 10px 5px 50px;
         border-radius: 20px 20px 0 0;
         pointer-events: none;
         opacity: 0;
@@ -129,7 +131,7 @@
       .menu-handle {
         width: 40px;
         height: 5px;
-        background: #ccc;
+        background: #bbb;
         border-radius: 3px;
         margin-bottom: 10px;
       }
@@ -213,6 +215,7 @@
     .sec-title-yellow {
       color: #ffc107;
       font-weight: 600;
+      font-size: 30px;
     }
 
     .sec-title-white-line {
@@ -274,6 +277,7 @@
 
     .product-container {
       display: grid;
+      flex-direction: column;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 10px;
     }
@@ -454,15 +458,31 @@
 }
 
 .rating-card {
-  min-width: 300px;
   max-width: 300px;
   flex: 0 0 auto;
   scroll-snap-align: center;
   background: #2a2d38;
-  padding: 18px;
+  padding: 10px;
   color: #fff;
   text-align: left;
+  line-height: 1;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.rating-card p {
+  font-size: 14px;
+  color: #fff;
+}
+
+.rating-user {
+  color: #ddd;
+  font-size: 10px;
+  padding-left: 5px;
+  border-left: 2px #ffc107 solid;
+}
+
+.rating-stars {
+  color: #ffc107;
 }
 
 .site-footer {
@@ -529,9 +549,9 @@
     </div>
     <div class="navbar-right">
       <div class="menu menu-desktop">
-        <a href="#">Informasi</a>
-        <a href="#">Produk</a>
-        <a href="#">Komunitas</a>
+        <a href="/info">Informasi</a>
+        <a href="#layanan">Produk</a>
+        <a href="https://discord.gg/32cPzMXmhr">Komunitas</a>
       </div>
       <button class="menu-toggle" onclick="toggleMenu()">
         <i id="menuIcon" class="fas fa-circle-info"></i>
@@ -541,9 +561,9 @@
 
   <div class="menu menu-mobile" id="navbarMenu">
     <div class="menu-handle" id="menuHandle"></div>
-    <a href="#">informasi: about and info of plixstore</a>
-    <a href="#">produk: list product and service</a>
-    <a href="#">komunitas: comunity dc of plixstore</a>
+    <a href="/info">informasi: about and info of plixstore</a>
+    <a href="#layanan">produk: list product and service</a>
+    <a href="https://discord.gg/32cPzMXmhr">komunitas: comunity dc of plixstore</a>
   </div>
 
   <div class="hero">
@@ -555,45 +575,45 @@
     PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!
   </p>
   <div class="hero-buttons">
-    <a href="#" class="hero-btn discord">Gabung Discord</a>
-    <a href="#" class="hero-btn support">Customer Support</a>
+    <a href="https://discord.gg/32cPzMXmhr" class="hero-btn discord">Gabung Discord</a>
+    <a href="mailto:plixbantuan@email.com" class="hero-btn support">Customer Support</a>
   </div>
 </div>
 
   <div class="product-section" id="layanan">
     <h1 class="sec-title">
-      <span class="sec-title-yellow">Buat Dunia mu</span><br>
+      <span class="sec-title-yellow">Buat Dunia mu</span>
       <div class="sec-title-white-line">
         <span class="sec-title-white">Daftar Layanan Kami</span>
       </div>
     </h1>
     <div class="product-container">
-      <div class="product-card">
-        <div class="card-icon"><i class="fas fa-database"></i></div>
-        <h3>HOSTING</h3>
-        <p>Layanan hosting untuk Minecraft, SAMP, website, dan bot Discord dengan performa tinggi.</p>
-      </div>
-      <div class="product-card">
-        <div class="card-icon"><i class="fas fa-tree"></i></div>
-        <h3>BUILDER</h3>
-        <p>Tim builder profesional siap membuat map Minecraft custom sesuai keinginan kamu.</p>
-      </div>
-      <div class="product-card">
-        <div class="card-icon"><i class="fas fa-palette"></i></div>
-        <h3>DESIGN</h3>
-        <p>Jasa desain logo, banner, UI Discord, dan lainnya untuk kebutuhan komunitasmu.</p>
-      </div>
-      <div class="product-card">
-        <div class="card-icon"><i class="fas fa-gear"></i></div>
-        <h3>SETUPS</h3>
-        <p>Setup server dan bot siap pakai, lengkap dengan plugin atau fitur custom.</p>
-      </div>
-    </div>
-  </div>
+      <div class="product-card" data-link="/layanan/hosting.html">
+  <div class="card-icon"><i class="fas fa-database"></i></div>
+  <h3>HOSTING</h3>
+  <p>Layanan hosting untuk Minecraft, SAMP, website, dan bot Discord dengan performa tinggi.</p>
+</div>
+<div class="product-card" data-link="/layanan/builder.html">
+  <div class="card-icon"><i class="fas fa-tree"></i></div>
+  <h3>BUILDER</h3>
+  <p>Tim builder profesional siap membuat map Minecraft custom sesuai keinginan kamu.</p>
+</div>
+<div class="product-card" data-link="/layanan/design.html">
+  <div class="card-icon"><i class="fas fa-palette"></i></div>
+  <h3>DESIGN</h3>
+  <p>Jasa desain logo, banner, UI Discord, dan lainnya untuk kebutuhan komunitasmu.</p>
+</div>
+<div class="product-card" data-link="/layanan/setups.html">
+  <div class="card-icon"><i class="fas fa-gear"></i></div>
+  <h3>SETUPS</h3>
+  <p>Setup server dan bot siap pakai, lengkap dengan plugin atau fitur custom.</p>
+</div>
+</div>
+</div>
 
  <div class="faq-container" id="bantuan">
     <h1 class="sec-title">
-      <span class="sec-title-yellow">Butuh Bantuan</span><br>
+      <span class="sec-title-yellow">Butuh Bantuan</span>
       <div class="sec-title-white-line">
         <span class="sec-title-white">Kami Siap membantu</span>
       </div>
@@ -630,14 +650,12 @@
   <!-- BENEFIT SECTION -->
 <section class="benefit-section" id="unggulan">
   <h1 class="sec-title">
-    <span class="sec-title-yellow">Keunggulan Kami?</span><br>
+    <span class="sec-title-yellow">Keunggulan Kami?</span>
     <div class="sec-title-white-line">
       <span class="sec-title-white">Bnefit kami tawarkan</span>
     </div>
   </h1>
   <div class="benefit-container">
-
-    <!-- Card 1 -->
     <div class="benefit-card">
       <i class="fas fa-shield-alt benefit-icon"></i>
       <div class="benefit-divider"></div>
@@ -646,8 +664,6 @@
         <p>Keamanan maksimal dari serangan berbahaya dengan sistem anti-DDoS canggih.</p>
       </div>
     </div>
-
-    <!-- Card 2 -->
     <div class="benefit-card">
       <i class="fas fa-tachometer-alt benefit-icon"></i>
       <div class="benefit-divider"></div>
@@ -656,8 +672,6 @@
         <p>Server berperforma tinggi dengan uptime 99.9% dan kecepatan maksimal.</p>
       </div>
     </div>
-
-    <!-- Card 3 -->
     <div class="benefit-card">
       <i class="fas fa-headset benefit-icon"></i>
       <div class="benefit-divider"></div>
@@ -666,8 +680,6 @@
         <p>Tim support kami siap membantu kapanpun, 24 jam sehari, 7 hari seminggu.</p>
       </div>
     </div>
-
-    <!-- Card 4 -->
     <div class="benefit-card">
       <i class="fas fa-lock benefit-icon"></i>
       <div class="benefit-divider"></div>
@@ -683,7 +695,7 @@
 <!-- RATING SECTION -->
 <div class="rating-section">
   <h1 class="sec-title">
-    <span class="sec-title-yellow">Apa Kata Mereka?</span><br>
+    <span class="sec-title-yellow">Apa Kata Mereka?</span>
     <div class="sec-title-white-line">
       <span class="sec-title-white">Ulasan Pengguna</span>
     </div>
@@ -691,28 +703,28 @@
   <div class="rating-container">
     <div class="rating-card">
       <div class="rating-stars">★★★★★</div>
-      <p class="rating-text">“Hosting-nya sangat cepat dan handal, sangat cocok untuk game online!”</p>
-      <div class="rating-user">- Arif | Owner Game Server</div>
+      <p class="rating-text">Builder cocok dengan yang di request untuk lobby sever!</p>
+      <div class="rating-user">- noname | owner-squidnetwork</div>
     </div>
     <div class="rating-card">
       <div class="rating-stars">★★★★☆</div>
-      <p class="rating-text">“Mudah digunakan, namun bisa lebih baik dengan opsi kustomisasi lebih banyak.”</p>
-      <div class="rating-user">- Siti | Developer Game</div>
+      <p class="rating-text">Backup setup sever yang dapat di kostumisasi dan jasa mengatur semua.</p>
+      <div class="rating-user">- noname | owner-ciloksmp</div>
     </div>
     <div class="rating-card">
       <div class="rating-stars">★★★★★</div>
-      <p class="rating-text">“Sangat puas dengan pelayanan dan server yang sangat stabil!”</p>
-      <div class="rating-user">- John | Administrator Server</div>
+      <p class="rating-text">Sangat puas dengan pelayanan dan hosting yang sangat stabil!</p>
+      <div class="rating-user">- hosting | owner-sampserver</div>
     </div>
     <div class="rating-card">
       <div class="rating-stars">★★★★☆</div>
-      <p class="rating-text">“Support tim sangat responsif dan memberikan solusi tepat waktu.”</p>
-      <div class="rating-user">- Alex | Web Developer</div>
+      <p class="rating-text">Hosting panel yang mudah frendly user dan bantuan yang respon</p>
+      <div class="rating-user">- noname | server komunitas</div>
     </div>
     <div class="rating-card">
       <div class="rating-stars">★★★★★</div>
-      <p class="rating-text">“Pelayanan yang sangat baik, server berjalan lancar tanpa masalah.”</p>
-      <div class="rating-user">- Maria | Admin Komunitas</div>
+      <p class="rating-text">Pelayanan yang sangat baik, server berjalan lancar tanpa masalah.</p>
+      <div class="rating-user">- noname | Admin Komunitas</div>
     </div>
   </div>
 </div>
@@ -728,10 +740,10 @@
     </div>
 
     <div class="footer-socials">
-  <a href="https://discord.com/invite/yourserver" target="_blank" title="Join Discord">
+  <a href="https://discord.gg/32cPzMXmhr" target="_blank" title="Join Discord">
     <i class="fab fa-discord"></i>
   </a>
-  <a href="mailto:your@email.com" title="Kirim Email">
+  <a href="mailto:plixbantuan@email.com" title="Kirim Email">
     <i class="fas fa-envelope"></i>
   </a>
   <a href="plixgo.my.id" title="website">
@@ -820,6 +832,16 @@ function r(){
 
 setInterval(r,3500);
 r();
+</script>
+<script>
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const link = card.getAttribute('data-link');
+      if (link) {
+        window.location.href = link;
+      }
+    });
+  });
 </script>
 </body>
 </html>
