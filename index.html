@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta http-equiv="refresh" content="600">
   <title>PLIXGO.MY.ID</title>
 <meta name="description" content="PlixGO - Layanan hosting Minecraft, SAMP, Discord, dan desain digital terbaik di Indonesia.">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
@@ -420,7 +421,6 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   width: calc(50% - 8px);
   box-sizing: border-box;
-  border-radius: 10px;
 }
 
 .benefit-icon {
@@ -497,13 +497,23 @@
   color: #ccc;
   padding: 40px 20px 20px;
   font-family: 'Poppins', sans-serif;
-  margin-top: 30px;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+}
+
+.footer-notice {
+  background-color: #FFD93D;
+  color: #333;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 30px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .footer-logo {
@@ -553,6 +563,27 @@ hr {
   height: 1px;
   background-color: #777;
 }
+.top-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #FFD93D;
+  color: #333;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  z-index: 1001;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.top-notice.show {
+  transform: translateY(0px);
+  opacity: 1;
+}
   </style>
 </head>
 <body>
@@ -579,6 +610,10 @@ hr {
     <a href="#layanan">produk: list product and service</a>
     <a href="https://discord.gg/32cPzMXmhr">komunitas: comunity dc of plixstore</a>
   </div>
+  
+  <div class="top-notice" id="topNotice">
+  <p>refresh berkala untuk mengecek update website! dan jangan lupa gabung server Discord kami!</p>
+</div>
 
   <div class="hero">
   <h1 class="hero-title">
@@ -749,7 +784,8 @@ hr {
     </div>
   </div>
 </div>
-
+<div class="footer-notice">refresh berkala untuk mengecek update halaman web!
+  </div>
 <footer class="site-footer">
   <div class="footer-container">
     <div class="footer-logo">PliXGO.MY.iD</div>
@@ -778,6 +814,6 @@ hr {
   </div>
 </footer>
 
-  <script>!function(){function e(){const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.toggle("open"),t.classList.toggle("fa-circle-info"),t.classList.toggle("fa-circle-xmark")}function t(e){e.closest(".faq-item").classList.toggle("open")}function n(){const e=document.querySelector(".navbar");0===window.scrollY?(e.classList.add("transparent"),e.classList.remove("scrolled")):(e.classList.add("scrolled"),e.classList.remove("transparent"))}document.getElementById("menuHandle").addEventListener("click",()=>{const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.remove("open"),t.classList.remove("fa-circle-xmark"),t.classList.add("fa-circle-info")}),window.addEventListener("scroll",n),window.addEventListener("load",n);let o=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],a=["HOSTING","BUILDER","DESIGN","SETUPS"],c=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!","Layanan pembangunan map Minecraft yang dirancang khusus untukmu.","Desain logo dan banner yang bikin komunitasmu tampil beda.","Setup bot & server siap pakai, lengkap dengan fitur terbaik."],s=0;function l(){let e=document.getElementById("dynamic-yellow"),t=document.getElementById("dynamic-white"),n=document.getElementById("dynamic-desc");[e,t,n].forEach(o=>o.classList.add("fade-out-up")),setTimeout(()=>{e.textContent=o[s],t.textContent=a[s],n.textContent=c[s],[e,t,n].forEach(e=>{e.classList.remove("fade-out-up"),e.classList.add("animate-slide"),setTimeout(()=>e.classList.remove("animate-slide"),300)}),s=(s+1)%o.length},300)}setInterval(l,3500),l(),document.querySelectorAll(".product-card").forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("data-link");t&&(window.location.href=t)})}),window.toggleMenu=e,window.toggleFAQ=t}();</script>
+  <script>!function(){function e(){const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.toggle("open"),t.classList.toggle("fa-circle-info"),t.classList.toggle("fa-circle-xmark")}function t(e){e.closest(".faq-item").classList.toggle("open")}function n(){const e=document.querySelector(".navbar");0===window.scrollY?(e.classList.add("transparent"),e.classList.remove("scrolled")):(e.classList.add("scrolled"),e.classList.remove("transparent"))}document.getElementById("menuHandle").addEventListener("click",()=>{const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.remove("open"),t.classList.remove("fa-circle-xmark"),t.classList.add("fa-circle-info")}),window.addEventListener("scroll",n),window.addEventListener("load",n);let o=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],a=["HOSTING","BUILDER","DESIGN","SETUPS"],c=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!","Layanan pembangunan map Minecraft yang dirancang khusus untukmu.","Desain logo dan banner yang bikin komunitasmu tampil beda.","Setup bot & server siap pakai, lengkap dengan fitur terbaik."],s=0;function l(){let e=document.getElementById("dynamic-yellow"),t=document.getElementById("dynamic-white"),n=document.getElementById("dynamic-desc");[e,t,n].forEach(o=>o.classList.add("fade-out-up")),setTimeout(()=>{e.textContent=o[s],t.textContent=a[s],n.textContent=c[s],[e,t,n].forEach(e=>{e.classList.remove("fade-out-up"),e.classList.add("animate-slide"),setTimeout(()=>e.classList.remove("animate-slide"),300)}),s=(s+1)%o.length},300)}setInterval(l,3500),l(),document.querySelectorAll(".product-card").forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("data-link");t&&(window.location.href=t)})}),window.toggleMenu=e,window.toggleFAQ=t}();</script><script>window.addEventListener("load",()=>{const e=document.getElementById("topNotice");setTimeout(()=>{e.classList.add("show")},2000),setTimeout(()=>{e.classList.remove("show")},7000)});</script>
 </body>
 </html>
