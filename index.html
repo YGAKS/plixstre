@@ -216,6 +216,9 @@
       color: #ffc107;
       font-weight: 600;
       font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .sec-title-white-line {
@@ -300,11 +303,14 @@
     .product-card h3 {
       font-size: 18px;
       font-weight: 500;
+      display: center;
     }
 
     .product-card p {
       font-size: 14px;
       color: #ddd;
+      display: flex;
+      text-align: center;
     }
 
     .product-card {
@@ -391,20 +397,18 @@
   transform: translateY(-20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-/* PERKECIL JARAK SECTION */
 .benefit-section, .rating-section {
-  padding: 20px 10px;
   margin: 0 auto;
+  padding: 10px;
   max-width: 1200px;
 }
-
 .benefit-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .benefit-card {
@@ -436,6 +440,7 @@
   font-size: 17px;
   margin-bottom: 6px;
   font-weight: 600;
+  display: flex;
 }
 
 .benefit-content p {
@@ -454,7 +459,6 @@
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
 }
 
 .rating-card {
@@ -471,6 +475,7 @@
 
 .rating-card p {
   font-size: 14px;
+  display: flex;
   color: #fff;
 }
 
@@ -483,6 +488,7 @@
 
 .rating-stars {
   color: #ffc107;
+  display: flex;
 }
 
 .site-footer {
@@ -503,6 +509,7 @@
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 15px;
+  display: center;
 }
 
 .footer-links {
@@ -757,91 +764,6 @@
   </div>
 </footer>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("navbarMenu");
-      const icon = document.getElementById("menuIcon");
-      menu.classList.toggle("open");
-      icon.classList.toggle("fa-circle-info");
-      icon.classList.toggle("fa-circle-xmark");
-    }
-
-    document.getElementById("menuHandle").addEventListener("click", () => {
-      const menu = document.getElementById("navbarMenu");
-      const icon = document.getElementById("menuIcon");
-      menu.classList.remove("open");
-      icon.classList.remove("fa-circle-xmark");
-      icon.classList.add("fa-circle-info");
-    });
-
-    function toggleFAQ(element) {
-      const item = element.closest(".faq-item");
-      item.classList.toggle("open");
-    }
-
-    window.addEventListener("scroll", () => {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY === 0) {
-        navbar.classList.add("transparent");
-        navbar.classList.remove("scrolled");
-      } else {
-        navbar.classList.add("scrolled");
-        navbar.classList.remove("transparent");
-      }
-    });
-
-    window.addEventListener("load", () => {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY === 0) {
-        navbar.classList.add("transparent");
-        navbar.classList.remove("scrolled");
-      } else {
-        navbar.classList.add("scrolled");
-        navbar.classList.remove("transparent");
-      }
-    });
-  </script>
-  <script>
-let y=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],
-    w=["HOSTING","BUILDER","DESIGN","SETUPS"],
-    d=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!",
-       "Layanan pembangunan map Minecraft yang dirancang khusus untukmu.",
-       "Desain logo dan banner yang bikin komunitasmu tampil beda.",
-       "Setup bot & server siap pakai, lengkap dengan fitur terbaik."],
-    i=0;
-
-function r(){
-  let e=document.getElementById("dynamic-yellow"),
-      t=document.getElementById("dynamic-white"),
-      n=document.getElementById("dynamic-desc");
-  
-  [e,t,n].forEach(o=>o.classList.add("fade-out-up"));
-  
-  setTimeout(()=>{
-    e.textContent=y[i];
-    t.textContent=w[i];
-    n.textContent=d[i];
-    [e,t,n].forEach(o=>{
-      o.classList.remove("fade-out-up");
-      o.classList.add("animate-slide");
-      setTimeout(()=>o.classList.remove("animate-slide"),300);
-    });
-    i=(i+1)%y.length;
-  },300);
-}
-
-setInterval(r,3500);
-r();
-</script>
-<script>
-  document.querySelectorAll('.product-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const link = card.getAttribute('data-link');
-      if (link) {
-        window.location.href = link;
-      }
-    });
-  });
-</script>
+  <script>!function(){function e(){const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.toggle("open"),t.classList.toggle("fa-circle-info"),t.classList.toggle("fa-circle-xmark")}function t(e){e.closest(".faq-item").classList.toggle("open")}function n(){const e=document.querySelector(".navbar");0===window.scrollY?(e.classList.add("transparent"),e.classList.remove("scrolled")):(e.classList.add("scrolled"),e.classList.remove("transparent"))}document.getElementById("menuHandle").addEventListener("click",()=>{const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.remove("open"),t.classList.remove("fa-circle-xmark"),t.classList.add("fa-circle-info")}),window.addEventListener("scroll",n),window.addEventListener("load",n);let o=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],a=["HOSTING","BUILDER","DESIGN","SETUPS"],c=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!","Layanan pembangunan map Minecraft yang dirancang khusus untukmu.","Desain logo dan banner yang bikin komunitasmu tampil beda.","Setup bot & server siap pakai, lengkap dengan fitur terbaik."],s=0;function l(){let e=document.getElementById("dynamic-yellow"),t=document.getElementById("dynamic-white"),n=document.getElementById("dynamic-desc");[e,t,n].forEach(o=>o.classList.add("fade-out-up")),setTimeout(()=>{e.textContent=o[s],t.textContent=a[s],n.textContent=c[s],[e,t,n].forEach(e=>{e.classList.remove("fade-out-up"),e.classList.add("animate-slide"),setTimeout(()=>e.classList.remove("animate-slide"),300)}),s=(s+1)%o.length},300)}setInterval(l,3500),l(),document.querySelectorAll(".product-card").forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("data-link");t&&(window.location.href=t)})}),window.toggleMenu=e,window.toggleFAQ=t}();</script>
 </body>
 </html>
