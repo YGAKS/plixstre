@@ -316,7 +316,7 @@
     .product-card {
       position: relative;
       border-radius: 10px;
-      background-color: #2a2d38;
+      background-color: #2F323E;
       padding: 10px;
       color: #fff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -333,7 +333,7 @@
     }
 
     .faq-item {
-      background: #2a2d38;
+      background: #2F323E;
       color: #fff;
       border-radius: 10px;
       padding: 20px;
@@ -369,7 +369,7 @@
     }
 
     .faq-item.open .faq-answer {
-      max-height: 200px;
+      max-height: 250px;
       opacity: 1;
     }
 
@@ -412,7 +412,7 @@
 }
 
 .benefit-card {
-  background-color: #1f2230;
+  background-color: #2F323E;
   padding: 16px 20px;
   display: flex;
   align-items: center;
@@ -438,7 +438,6 @@
 
 .benefit-content h3 {
   font-size: 17px;
-  margin-bottom: 6px;
   font-weight: 600;
   display: flex;
 }
@@ -465,7 +464,7 @@
   max-width: 300px;
   flex: 0 0 auto;
   scroll-snap-align: center;
-  background: #2a2d38;
+  background: #2F323E;
   padding: 10px;
   color: #fff;
   text-align: left;
@@ -476,11 +475,11 @@
 .rating-card p {
   font-size: 14px;
   display: flex;
-  color: #fff;
+  color: #ddd;
 }
 
 .rating-user {
-  color: #ddd;
+  color: #bbb;
   font-size: 10px;
   padding-left: 5px;
   border-left: 2px #ffc107 solid;
@@ -492,7 +491,7 @@
 }
 
 .site-footer {
-  background-color: #1f2230;
+  background-color: #3B3F51;
   color: #ccc;
   padding: 40px 20px 20px;
   font-family: 'Poppins', sans-serif;
@@ -545,6 +544,12 @@
   font-size: 13px;
   color: #777;
   margin-top: 10px;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #777;
 }
   </style>
 </head>
@@ -627,34 +632,41 @@
     </h1>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFAQ(this)">
-        <span class="faq-text">Apakah PlixGO menyediakan server Minecraft?</span>
+        <span class="faq-text">Apakah cocok untuk pemula awam membuat sever?</span>
         <i class="fas fa-chevron-down faq-toggle-icon"></i>
       </div>
       <div class="faq-answer">
-        Ya! PlixGO menyediakan layanan hosting Minecraft dengan performa tinggi dan fitur lengkap.
+        Ya! kami PlixGO akan membantu anda dalam membantu anda menjelaskan cara membuat sever! dan apa yang di butuhkan dengan pengalaman kami frendly user support
       </div>
     </div>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFAQ(this)">
-        <span class="faq-text">Apakah bisa hosting bot Discord?</span>
+        <span class="faq-text">Bagaimana cara membeli? dan support jika terjadi sesuatu!</span>
         <i class="fas fa-chevron-down faq-toggle-icon"></i>
       </div>
-      <div class="faq-answer">
-        Tentu, kami menyediakan paket khusus untuk bot Discord agar tetap online 24/7 dengan resource optimal.
+      <div class="faq-answer">Kamu bisa join discord atau altenatif wa/gmail untuk membeli tapi kamu di harapkan untuk gabung discord untuk lebih baik mengenai pembelian hingga support yang lebih baik dan responsif dan komunitas chat untuk mengomentari, event, info dsb.
       </div>
     </div>
     <div class="faq-item">
       <div class="faq-question" onclick="toggleFAQ(this)">
-        <span class="faq-text">Apakah ada support untuk SAMP server?</span>
+        <span class="faq-text">Bagaimana cara kerja pemesanan beberapa layanan dan bagaimana jika terjadi sesuatu?</span>
         <i class="fas fa-chevron-down faq-toggle-icon"></i>
       </div>
       <div class="faq-answer">
-        PlixGO mendukung hosting SAMP server dengan setup mudah dan bantuan teknis jika dibutuhkan.
+        Kami PlixGO dengan membuat kerja sama terhadap pembeli jadi pembayaran untuk layanan builder dan design itu di pertengahan pembuatan jadi kedua belah pihak aman dari namanya (scammer) dan ada pemantauan admin lain. kalau hosting dan setups kami mohon kerja sama nya untuk membayar di awal untuk modal kami (no refun karena sesuatu yang aneh!)<hr>jika terjadi sesuatu? kami akan berbincang di discord support mengenai masalah nya dan akan menyelesaikan dengan kepaal dingin!
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFAQ(this)">
+        <span class="faq-text">Butuh bantuan lainya? dan ingin tahu informasi update, event?</span>
+        <i class="fas fa-chevron-down faq-toggle-icon"></i>
+      </div>
+      <div class="faq-answer">
+        Kamu bisa join discord bantuan menggukanan ticket dan lihat informasi update dan event di announcement ~Terimakasih salam hangat PlixGo
       </div>
     </div>
   </div>
   
-  <!-- BENEFIT SECTION -->
 <section class="benefit-section" id="unggulan">
   <h1 class="sec-title">
     <span class="sec-title-yellow">Keunggulan Kami?</span>
@@ -667,8 +679,8 @@
       <i class="fas fa-shield-alt benefit-icon"></i>
       <div class="benefit-divider"></div>
       <div class="benefit-content">
-        <h3>Proteksi DDoS</h3>
-        <p>Keamanan maksimal dari serangan berbahaya dengan sistem anti-DDoS canggih.</p>
+        <h3>Proteksi Keamanan</h3>
+        <p>Keamanan 99% anti ddos kami dengan monitoring 24/7 aman dan tambahan auto backup data</p>
       </div>
     </div>
     <div class="benefit-card">
@@ -676,7 +688,7 @@
       <div class="benefit-divider"></div>
       <div class="benefit-content">
         <h3>Performa Cepat</h3>
-        <p>Server berperforma tinggi dengan uptime 99.9% dan kecepatan maksimal.</p>
+        <p>Hosting dengan bertenaga amd ryzen kami akan memberikan terbaik untuk anda! performa 99% aman.</p>
       </div>
     </div>
     <div class="benefit-card">
@@ -684,7 +696,7 @@
       <div class="benefit-divider"></div>
       <div class="benefit-content">
         <h3>Dukungan 24/7</h3>
-        <p>Tim support kami siap membantu kapanpun, 24 jam sehari, 7 hari seminggu.</p>
+        <p>Dukungan dengan tim kami mengenai bantuan dengan baik kami mungkin delay karena sekolah!</p>
       </div>
     </div>
     <div class="benefit-card">
@@ -692,7 +704,7 @@
       <div class="benefit-divider"></div>
       <div class="benefit-content">
         <h3>Privasi Terjamin</h3>
-        <p>Data pengguna dienkripsi dan aman dengan standar industri terbaik.</p>
+        <p>Data pengguna backup, builder, dan sbgainya aman tidak di perjual belikan (kecuali builder shared) enkripsi privacy komdigi</p>
       </div>
     </div>
 
