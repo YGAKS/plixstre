@@ -21,7 +21,6 @@
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       background-color: #181a22;
-      padding-top: 50px;
       user-select: none;
     }
 
@@ -144,11 +143,20 @@
       }
     }
 
-    .hero {
-      text-align: center;
-      padding: 20px 20px;
-      color: #fff;
-    }
+.hero {
+  text-align: center;
+  padding: 20px 20px;
+  padding-top: 50px;
+  color: #fff;
+  background-color: #181a22;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='rotate(-25 12 12)'%3E%3Cpath fill='%233A3D4A' d='M2 12l4 4 3-3 3 3 3-3 3 3 4-4-4-4-3 3-3-3-3 3-3-3-4 4z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 80px;
+  background-position: center center;
+  background-attachment: fixed;
+  background: linear-gradient(to top, rgba(24, 26, 34, 1) 10%, rgba(24, 26, 34, 0) 100%), url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='rotate(-25 12 12)'%3E%3Cpath fill='%233A3D4A' d='M2 12l4 4 3-3 3 3 3-3 3 3 4-4-4-4-3 3-3-3-3 3-3-3-4 4z'/%3E%3C/g%3E%3C/svg%3E");
+}
 
     .hero-title {
       font-size: 35px;
@@ -589,39 +597,54 @@ hr {
   transform: translateY(0px);
   opacity: 1;
 }
+
+.section-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes bounceInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce {
+  animation: bounceInUp 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade {
+  animation: fadeIn 0.8s ease forwards;
+}
   </style>
 </head>
 <body>
 
-  <div class="navbar transparent">
-    <div class="navbar-left">
-      <span class="navbar-title">PliXGO.MY.iD</span>
-    </div>
-    <div class="navbar-right">
-      <div class="menu menu-desktop">
-        <a href="/info">Informasi</a>
-        <a href="#layanan">Produk</a>
-        <a href="https://discord.gg/32cPzMXmhr">Komunitas</a>
-      </div>
-      <button class="menu-toggle" onclick="toggleMenu()">
-        <i id="menuIcon" class="fas fa-circle-info"></i>
-      </button>
-    </div>
-  </div>
+ <div class="navbar transparent"><div class="navbar-left"><span class="navbar-title">PliXGO.MY.iD</span></div><div class="navbar-right"><div class="menu menu-desktop"><a href="/info">Informasi</a><a href="#layanan">Produk</a><a href="https://discord.gg/32cPzMXmhr">Komunitas</a></div><button class="menu-toggle" onclick="toggleMenu()"><i id="menuIcon" class="fas fa-circle-info"></i></button></div></div><div class="menu menu-mobile" id="navbarMenu"><div class="menu-handle" id="menuHandle"></div><a href="/info">informasi: about and info of plixstore</a><a href="#layanan">produk: list product and service</a><a href="https://discord.gg/32cPzMXmhr">komunitas: comunity dc of plixstore</a><a href="mailto:plixbantuan@email.com">cs: bantuan customer service</a></div><div class="top-notice" id="topNotice"><p>refresh berkala untuk mengecek update website! dan jangan lupa gabung server Discord kami!</p></div>
 
-  <div class="menu menu-mobile" id="navbarMenu">
-    <div class="menu-handle" id="menuHandle"></div>
-    <a href="/info">informasi: about and info of plixstore</a>
-    <a href="#layanan">produk: list product and service</a>
-    <a href="https://discord.gg/32cPzMXmhr">komunitas: comunity dc of plixstore</a>
-    <a href="mailto:plixbantuan@email.com">cs: bantuan customer service</a>
-  </div>
-  
-  <div class="top-notice" id="topNotice">
-  <p>refresh berkala untuk mengecek update website! dan jangan lupa gabung server Discord kami!</p>
-</div>
-
-  <div class="hero">
+<!-- HERO SECTION -->
+<div class="hero">
+<section data-animation="bounce">
   <h1 class="hero-title">
     <span class="hero-title-yellow" id="dynamic-yellow">Roleplay Dan Petualangan</span><br>
     <span class="hero-title-white" id="dynamic-white">HOSTING</span>
@@ -633,8 +656,11 @@ hr {
     <a href="https://discord.gg/32cPzMXmhr" class="hero-btn discord">Gabung Discord</a>
     <a href="/event" class="hero-btn event">Gabung Event</a>
   </div>
+</section>
 </div>
 
+<!-- PRODUK SECTION -->
+<section data-animation="fade">
   <div class="product-section" id="layanan">
     <h1 class="sec-title">
       <span class="sec-title-yellow">Buat Dunia mu</span>
@@ -665,7 +691,10 @@ hr {
 </div>
 </div>
 </div>
+</section>
 
+<!-- FAQ SECTION -->
+<section data-animation="fade">
  <div class="faq-container" id="bantuan">
     <h1 class="sec-title">
       <span class="sec-title-yellow">Butuh Bantuan</span>
@@ -708,8 +737,10 @@ hr {
         Kamu bisa join discord bantuan menggukanan ticket dan lihat informasi update dan event di announcement ~Terimakasih salam hangat PlixGo
       </div>
     </div>
-  </div>
+  </div></section>
   
+<!-- BENEFIT SECTION -->
+<section data-animation="fade">
 <section class="benefit-section" id="unggulan">
   <h1 class="sec-title">
     <span class="sec-title-yellow">Keunggulan Kami?</span>
@@ -752,9 +783,10 @@ hr {
     </div>
 
   </div>
-</section>
+</section></section>
 
 <!-- RATING SECTION -->
+<section data-animation="fade">
 <div class="rating-section">
   <h1 class="sec-title">
     <span class="sec-title-yellow">Apa Kata Mereka?</span>
@@ -790,36 +822,13 @@ hr {
     </div>
   </div>
 </div>
-<div class="footer-notice">refresh berkala untuk mengecek update halaman web!
-  </div>
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-logo">PliXGO.MY.iD</div>
+</section>
 
-    <div class="footer-links">
-      <a href="#layanan">Layanan</a>
-      <a href="#bantuan">Bantuan</a>
-      <a href="#unggulan">Keunggulan</a>
-    </div>
-
-    <div class="footer-socials">
-  <a href="https://discord.gg/32cPzMXmhr" target="_blank" title="Join Discord">
-    <i class="fab fa-discord"></i>
-  </a>
-  <a href="mailto:plixbantuan@email.com" title="Kirim Email">
-    <i class="fas fa-envelope"></i>
-  </a>
-  <a href="https://wa.me/message/4HEISZIHC7FSI1" title="website">
-    <i class="fas fa-headset"></i>
-  </a>
-</div>
-
-    <div class="footer-bottom">
-      &copy; 2025 PliXGO. All rights reserved.
-    </div>
-  </div>
-</footer>
+<div class="footer-notice">refresh berkala untuk mengecek update halaman web!</div><footer class="site-footer"><div class="footer-container"><div class="footer-logo">PliXGO.MY.iD</div><div class="footer-links"><a href="#layanan">Layanan</a><a href="#bantuan">Bantuan</a><a href="#unggulan">Keunggulan</a></div><div class="footer-socials"><a href="https://discord.gg/32cPzMXmhr" target="_blank" title="Join Discord"><i class="fab fa-discord"></i></a><a href="mailto:plixbantuan@email.com" title="Kirim Email"><i class="fas fa-envelope"></i></a><a href="https://wa.me/message/4HEISZIHC7FSI1" title="website"><i class="fas fa-headset"></i></a></div><div class="footer-bottom">&copy; 2025 PliXGO. All rights reserved.</div></div></footer>
 
   <script>!function(){function e(){const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.toggle("open"),t.classList.toggle("fa-circle-info"),t.classList.toggle("fa-circle-xmark")}function t(e){e.closest(".faq-item").classList.toggle("open")}function n(){const e=document.querySelector(".navbar");0===window.scrollY?(e.classList.add("transparent"),e.classList.remove("scrolled")):(e.classList.add("scrolled"),e.classList.remove("transparent"))}document.getElementById("menuHandle").addEventListener("click",()=>{const e=document.getElementById("navbarMenu"),t=document.getElementById("menuIcon");e.classList.remove("open"),t.classList.remove("fa-circle-xmark"),t.classList.add("fa-circle-info")}),window.addEventListener("scroll",n),window.addEventListener("load",n);let o=["Roleplay Dan Petualangan","Buat Dunia Impianmu","Tampil beda dengan design","Creative Tidak ada Batas"],a=["HOSTING","BUILDER","DESIGN","SETUPS"],c=["PlixGO adalah solusi hosting terbaik untuk kebutuhan server digital kamu!","Layanan pembangunan map Minecraft yang dirancang khusus untukmu.","Desain logo dan banner yang bikin komunitasmu tampil beda.","Setup bot & server siap pakai, lengkap dengan fitur terbaik."],s=0;function l(){let e=document.getElementById("dynamic-yellow"),t=document.getElementById("dynamic-white"),n=document.getElementById("dynamic-desc");[e,t,n].forEach(o=>o.classList.add("fade-out-up")),setTimeout(()=>{e.textContent=o[s],t.textContent=a[s],n.textContent=c[s],[e,t,n].forEach(e=>{e.classList.remove("fade-out-up"),e.classList.add("animate-slide"),setTimeout(()=>e.classList.remove("animate-slide"),300)}),s=(s+1)%o.length},300)}setInterval(l,3500),l(),document.querySelectorAll(".product-card").forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("data-link");t&&(window.location.href=t)})}),window.toggleMenu=e,window.toggleFAQ=t}();</script><script>window.addEventListener("load",()=>{const e=document.getElementById("topNotice");setTimeout(()=>{e.classList.add("show")},2000),setTimeout(()=>{e.classList.remove("show")},7000)});</script>
+  <script>
+document.addEventListener("DOMContentLoaded",function(){let delayCounter=0,delayStep=100;const observer=new IntersectionObserver((entries,observer)=>{entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.target.offsetTop-b.target.offsetTop).forEach((entry,index)=>{const target=entry.target;setTimeout(()=>{target.classList.remove('section-hidden');const animationType=target.dataset.animation;if(animationType==='fade'){target.classList.add('animate-fade');}else if(animationType==='bounce'){target.classList.add('animate-bounce');}},delayCounter);delayCounter+=delayStep;observer.unobserve(target);});},{threshold:0.2});document.querySelectorAll('[data-animation]').forEach(section=>{section.classList.add('section-hidden');observer.observe(section);});});
+</script>
 </body>
 </html>
